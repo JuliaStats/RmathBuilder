@@ -1,0 +1,39 @@
+language: julia
+os:
+  - linux
+julia:
+  - 0.6
+notifications:
+  email: false
+git:
+  depth: 99999999
+cache:
+  timeout: 1000
+  directories:
+    - downloads
+env:
+  global:
+    - BINARYBUILDER_DOWNLOADS_CACHE=downloads
+    - BINARYBUILDER_AUTOMATIC_APPLE=true
+sudo: required
+
+# Before anything else, get the latest versions of things
+before_script:
+  - julia -e 'Pkg.clone("https://github.com/JuliaPackaging/BinaryProvider.jl")'
+  - julia -e 'Pkg.clone("https://github.com/JuliaPackaging/BinaryBuilder.jl"); Pkg.build()'
+
+script:
+  - julia build_tarballs.jl
+
+deploy:
+  provider: releases
+  api_key:
+    # Note; this api_key is only valid for staticfloat/RmathBuilder; you need
+    # to make your own: https://docs.travis-ci.com/user/deployment/releases/
+    secure: 
+  file_glob: true
+  file: products/*
+  skip_cleanup: true
+  on:
+    repo: staticfloat/RmathBuilder
+    tags: true
