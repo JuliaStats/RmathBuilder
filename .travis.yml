@@ -30,7 +30,7 @@ deploy:
   api_key:
     # Note; this api_key is only valid for staticfloat/RmathBuilder; you need
     # to make your own: https://docs.travis-ci.com/user/deployment/releases/
-    secure: 
+    secure: RhIY0WiarYeObmixbLbcKGbq2Xj0m7CYWOaHFZWrXHH/w4Is8QUovDNevBUYYJ9Q2AD1NpLk5bTPGKzPBdmXtzYVV5EOQbS7vcLVOpzxFCZH4M8p1vA2Pl1dTbtI7Xi/tQHO7T0bC76l7nkt16hOPo1CtEjuoCtqESiaIwvUF5J8YE9asLk76Am3FAKoJu6jsL4Z83Rpm3Kw/jlmYV8GgSngnR4hJq/9ByYRVyWY1daevrhcydn2LycwtyyD23c/Y/DK1LoAT7ixriH/LN9EfHOfpY4jt0iY/hrZNrgm7GpQi8RNTb0vIY+QbHE4bgjKJh6+KY39T6lnGmwN6FzRIMOWKM+TA1hRkROxBhFzBxLsR2fx6AFrF0QCSeqR7SfRP8x8vZCFlKYREP8GCiVxTaPK2H3toCv7lznMEvOq6Yrs/7KrsI9dnkBlUAlw6CBWXSbn4CIPVvjq/5yqQYDN98TWGZBuIk3YdXxHGnMlBpDAkK+7aZCPnUYA6bbV8JdvYc9U7E3BPDNWEtiRnhT39F3SZ2Z12TFOoMkNfCoHoWG79S6ZBb1szaABStQ6Jug8+lTIuf6xnuKlvyeKpl73NDlp1WD8SArGAbrOCETrr+9/bZ2aaOEBep2kZMWXoSttgF9lbTPEYUw0ynEAmBpZTXTmDXqgt+M8u2Flrqlsr1E=
   file_glob: true
   file: products/*
   skip_cleanup: true
