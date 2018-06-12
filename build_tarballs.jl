@@ -16,32 +16,23 @@ MAKEVARS="fPIC=-fPIC prefix=$prefix"
 libdir=$prefix/lib
 
 # It needs to be told it's on Windows
-#if [[ ${target} == *mingw* ]]; then
-#    MAKEVARS="${MAKEVARS} OS=Windows_NT"
-#    libdir=$prefix/bin
-#fi
+if [[ ${target} == *mingw* ]]; then
+    MAKEVARS="${MAKEVARS} OS=Windows_NT"
+    libdir=$prefix/bin
+fi
 
 # Build it
-make ${MAKEVARS} -j${nproc}
+make ${MAKEVARS} CC="$CC" CXX="$CXX" -j${nproc}
 
 # Install it
 mkdir -p $libdir $prefix/include
-mv src/libRmath-julia*.so $libdir/
+mv src/libRmath-julia*.${dlext} $libdir/
 mv include/* $prefix/include/
 """
 
 # These are the platforms we will build for by default, unless further
 # platforms are passed in on the command line
-platforms = [
-    BinaryProvider.Linux(:i686, :glibc),
-    BinaryProvider.Linux(:x86_64, :glibc),
-    BinaryProvider.Linux(:aarch64, :glibc),
-    BinaryProvider.Linux(:armv7l, :glibc),
-    BinaryProvider.Linux(:powerpc64le, :glibc),
-    BinaryProvider.MacOS(),
-    BinaryProvider.Windows(:i686),
-    BinaryProvider.Windows(:x86_64)
-]
+platforms = supported_platforms()
 
 # The products that we will ensure are always built
 products(prefix) = [
